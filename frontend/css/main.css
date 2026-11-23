@@ -120,7 +120,7 @@ body {
 }
 
 .card-agendamentos,
-.card-vidrarias,
+.card-materiais,
 .card-reagentes,
 .card-sos {
     display: flex;
@@ -138,17 +138,17 @@ body {
     cursor: pointer;
 }
 
-.card-vidrarias img {
+.card-materiais img {
     width: 100%;
     max-width: 130px;
     cursor: pointer;
 }
 
-.card-reagentes img {
+.card-historico img {
     width: 100%;
     max-width: 100px;
     cursor: pointer;
-    padding: 8px;
+    padding: 40px;
 }
 
 .card-sos img {
@@ -259,8 +259,8 @@ body {
         max-width: 250px;
     }
 
-    .card-vidrarias img,
-    .card-reagentes img,
+    .card-materiais img,
+    .card-historico img,
     .card-sos img {
         max-width: 140px;
     }
