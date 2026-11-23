@@ -1,121 +1,96 @@
-table {
-    width: 95%;
-    margin: 20px auto;
-    border-radius: 12px 12px;
-    text-align: center;
-      background-color: #d856b1;
+.tabela-container {
+    width: 100%;
+    overflow-x: auto;
 }
+
+.tabela-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabela-container th,
+.tabela-container td {
+    padding: 10px;
+    text-align: center;
+}
+
 .barra-pesquisa {
-    margin: 30px 50px;
-    text-align: right;
+    display: flex;
+    justify-content: center;
+    margin: 20px;
 }
 
 .barra-pesquisa input {
-    padding: 9px;
-    width: 260px;
-    border: 2px solid #d856b1;
-    border-radius: 8px;
-    font-size: 15px;
-}
-
-.barra-pesquisa input:focus {
-    outline: none;
-     padding: 9px;
-    border: 2px solid #d856b1;
-}
-th {
-    padding: 10px 10px;
-    color: #f4f0f2;
-}
-
-.linha-materiais td {
-    background-color: #e9ece7;
-    padding: 8px;
-}
-
-.linha-materiais td:first-child {
-    border-radius: 70px 0 0 70px;
-}
-
-.linha-materiais td:last-child {
-    border-radius: 0 70px 70px 0;
-}
-
-button img {
-    width: 18px;
-    height: 18px;
-}
-
-.main-content form {
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    margin: 30px auto;
-    gap: 10px;
-}
-
-.main-content form input {
     padding: 10px;
     border: 1px solid #d856b1;
     border-radius: 8px;
 }
 
-.main-content form button {
-    padding: 12px;
-    background-color: #d856b1;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
+
 .titulo-materiais {
     color: #d856b1;
-    text-align: center;  
-    margin-top: 50px;    
-    margin-bottom: 25px;  
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 25px;
 }
+
 .descricao-cadastro {
     text-align: center;
-    color: #777;
-    margin-bottom: 30px;
+    color: #555;
+    margin-bottom: 20px;
 }
 
 .cadastro-form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     width: 450px;
-    margin:   0 auto 50px;
-    padding: 35px;
-    background-color: white;
-    border: 1px solid #dce8f5;
+    margin: 20px auto 50px;
+    padding: 20px;
+    background: white;
+    border: 1px solid #d856b1;
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 15px rgba(0,0,0,.08);
+    box-sizing: border-box;
+}
+
+.cadastro-form h2 {
+    text-align: center;
+    color: #d856b1;
+    font-size: 22px;
+    margin: 10px 0;
 }
 
 .cadastro-form label {
     color: #d856b1;
     font-weight: bold;
-    margin-top: 8px;
+    margin-top: 3px;
 }
 
-.cadastro-form input {
-    padding: 12px;
+.cadastro-form input,
+.cadastro-form textarea {
+    padding: 8px;
     border: 1px solid #cbd8e6;
     border-radius: 8px;
     font-size: 15px;
+    box-sizing: border-box;
+}
+
+.cadastro-form textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+.cadastro-form input:focus,
+.cadastro-form textarea:focus {
+    border-color: #d856b1;
     outline: none;
 }
 
-.cadastro-form input:focus {
-    border-color: #d856b1;
-    box-shadow: 0 0 4px rgba(53, 124, 196, 0.3);
-}
-
 .cadastro-form button {
-    margin-top: 20px;
-    padding: 13px;
-    background-color: #d856b1;
+    margin-top: 10px;
+    padding: 10px;
+    background: #d856b1;
     color: white;
     border: none;
     border-radius: 8px;
@@ -125,51 +100,49 @@ button img {
 }
 
 .cadastro-form button:hover {
-    background-color: #d856b1;
+    background: #c4429e;
 }
 .botao-cadastro {
-    display: inline-block;
-    padding: 12px 20px;
-    margin: 0 20px;
+    padding: 10px 15px;
     background-color: #d856b1;
     color: white;
-    text-decoration: none;
+    border: none;
     border-radius: 8px;
-    font-weight: bold;
+    cursor: pointer;
 }
-
-.botao-cadastro:hover {
-    background-color: #d856b1;
-}
-.tabela-container {
-    width: 100%;
-    overflow-x: auto;
-}
-
 @media (max-width: 768px) {
 
     .titulo-materiais {
-        width: auto;
         margin: 20px 10px;
         font-size: 21px;
-        padding: 10px;
     }
 
     .cadastro-form {
         width: auto;
-        max-width: none;
         margin: 20px 10px;
         padding: 20px;
-        box-sizing: border-box;
     }
 
-    .cadastro-form input {
+    .cadastro-form h2 {
+        font-size: 19px;
+    }
+
+    .cadastro-form input,
+    .cadastro-form textarea {
         width: 100%;
-        box-sizing: border-box;
+        font-size: 14px;
     }
 
     .cadastro-form button {
         width: 100%;
     }
 
+    .tabela-container {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .tabela-container table {
+        min-width: 600px;
+    }
 }
