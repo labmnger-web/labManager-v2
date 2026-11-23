@@ -28,16 +28,16 @@ th {
     color: #f4f0f2;
 }
 
-.linha-vidrarias td {
+.linha-materiais td {
     background-color: #e9ece7;
     padding: 8px;
 }
 
-.linha-vidrarias td:first-child {
+.linha-materiais td:first-child {
     border-radius: 70px 0 0 70px;
 }
 
-.linha-vidrarias td:last-child {
+.linha-materiais td:last-child {
     border-radius: 0 70px 70px 0;
 }
 
@@ -68,7 +68,7 @@ button img {
     border-radius: 8px;
     cursor: pointer;
 }
-.titulo-vidrarias {
+.titulo-materiais {
     color: #d856b1;
     text-align: center;  
     margin-top: 50px;    
@@ -148,7 +148,7 @@ button img {
 
 @media (max-width: 768px) {
 
-    .titulo-vidrarias {
+    .titulo-materiais {
         width: auto;
         margin: 20px 10px;
         font-size: 21px;
