@@ -1,0 +1,291 @@
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #e0e0e0;
+}
+
+.header-logo img {
+    width: 140px;
+}
+
+.usuario-logado {
+    position: absolute;
+    right: 30px;
+    top: 25px;
+    padding: 10px 18px;
+    border-radius: 20px;
+    color: #0e0e0e;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.mensagem-boas-vindas {
+    text-align: center;
+    margin: 15px auto;
+    color: #e245abe7;
+    font-size: 18px;
+}
+
+.page-content {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+}
+
+.sidebar {
+    width: 100px;
+    min-height: 20vh;
+    background-color: #538fde;
+    padding: 20px;
+    margin-bottom: 0.1cm;
+}
+
+.sidebar button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 45px;
+    cursor: pointer;
+}
+
+.menu-container {
+    position: relative;
+}
+
+.menu {
+    display: none;
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    margin-top: 30px;
+    padding: 10px;
+    width: 300px;
+    background-color: #e245ab;
+    border-radius: 10px;
+    box-shadow: 0 10px 19px hwb(319 41% 7%);
+    font-size: 20px;
+    box-sizing: border-box;
+}
+
+.menu a {
+    display: block;
+    text-decoration: none;
+    color: #e245ab;
+    background-color: #fbf9fb;
+    padding: 20px;
+    margin-bottom: 6px;
+    border-radius: 9px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 20px;
+}
+
+.menu a:hover {
+    background-color: #f7a9d5b6;
+}
+
+.main-content {
+    flex: 3;
+    min-width: 0;
+}
+
+.area-cards {
+    width: 100%;
+    max-width: 1400px;
+    margin: 20px auto;
+    padding: 18px;
+    box-sizing: border-box;
+    border: 1px solid #e245ab;
+    border-radius: 15px;
+}
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: center;
+    justify-items: center;
+    gap: 12px 10px;
+}
+
+.card-agendamentos,
+.card-vidrarias,
+.card-reagentes,
+.card-sos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+}
+
+.card-agendamentos img {
+    width: 100%;
+    max-width: 270px;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.card-vidrarias img {
+    width: 100%;
+    max-width: 130px;
+    cursor: pointer;
+}
+
+.card-reagentes img {
+    width: 100%;
+    max-width: 100px;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.card-sos img {
+    width: 100%;
+    max-width: 140px;
+    cursor: pointer;
+    padding: 27px;
+}
+
+.titulo-card {
+    background-color: #e245ab;
+    color: white;
+    padding: 7px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+    width: 165px;
+    margin: 6px auto;
+    box-sizing: border-box;
+}
+
+.cards-container a {
+    text-decoration: none;
+}
+
+.btn-editar img {
+    width: 20px;
+    height: 20px;
+}
+
+.footer {
+    background-color: #538fde;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 30px;
+    font-size: 24px;
+    margin-top: auto;
+}
+
+.footer img {
+    width: 55px;
+    position: absolute;
+    right: 20px;
+}
+
+@media (max-width: 768px) {
+
+    .header-content {
+        padding: 10px;
+    }
+
+    .header-logo img {
+        width: 110px;
+    }
+
+    .usuario-logado {
+        right: 10px;
+        top: 15px;
+        font-size: 18px;
+        padding: 5px;
+    }
+
+    .menu {
+    left: 20px;
+    width: 210px;
+    padding: 8px;
+    margin-top: 20px;
+        font-size: 16px;
+    }
+
+    .menu a {
+        font-size: 16px;
+        padding: 10px;
+        margin-bottom: 6px;
+    }
+
+    .sidebar {
+        width: 50px;
+        padding: 10px;
+    }
+
+    .sidebar button {
+        font-size: 45px;
+    }
+
+    .main-content {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .area-cards {
+        width: auto;
+        max-width: none;
+        margin: 20px 10px;
+        padding: 15px;
+    }
+
+    .cards-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .card-agendamentos img {
+        max-width: 250px;
+    }
+
+    .card-vidrarias img,
+    .card-reagentes img,
+    .card-sos img {
+        max-width: 140px;
+    }
+
+    .titulo-card {
+        width: 200px;
+        font-size: 16px;
+    }
+
+    .footer {
+        padding: 20px;
+        font-size: 14px;
+    }
+
+    .footer img {
+        width: 45px;
+        right: 10px;
+    }
+
+    .tabela-container {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    .tabela-container table {
+        min-width: 600px;
+    }
+}

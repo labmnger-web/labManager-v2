@@ -1,0 +1,142 @@
+.tabela-sos {
+    width: 100%;
+    border-collapse: collapse;
+    border: 2px solid #d856b1;
+    margin-bottom: 25px;
+}
+
+.tabela-sos th,
+.tabela-sos td {
+    padding: 10px;
+    text-align: center;
+    border: 2px solid #d856b1;
+    
+}
+
+.tabela-sos th {
+    background-color: #d856b1;
+    color: white;
+}
+
+
+.area-sos .botao-cadastro {
+    display: inline-block;
+    padding: 12px 20px;
+    margin-bottom: 30px;
+    background-color: #d856b1;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.area-sos .botao-cadastro:hover {
+    background-color: #b83e91;
+}
+
+.btn-excluir img {
+    width: 20px;
+    height: 20px;
+}
+
+.titulo-sos {
+    color: #e844b7;
+    text-align: center;
+    margin: 30px auto;
+    font-size: 26px;
+}
+
+.area-sos {
+    width: 90%;
+    max-width: 950px;
+    margin: 50px auto;
+    padding: 30px;
+    border: 1px solid #d856b1;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+.cadastro-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 600px;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto 30px;
+    padding: 45px;
+    background-color: white;
+    border: 1px solid #d856b1;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.cadastro-form label {
+    color: #d856b1;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.cadastro-form input {
+    padding: 15px;
+    border: 1px solid #d856b1;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+}
+
+.cadastro-form input:focus {
+    border-color: #d856b1;
+    box-shadow: 0 0 4px rgba(216, 86, 177, 0.3);
+}
+
+.cadastro-form button {
+    margin-top: 20px;
+    padding: 13px;
+    background-color: #d856b1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cadastro-form button:hover {
+    background-color: #b83e91;
+}
+.voltar-login {
+    display: inline-block;
+    width: fit-content;
+    padding: 5px 8px;
+    margin: 10px 0;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #d856b1;
+    border-radius: 8px;
+}
+.voltar-login:hover {
+    background-color: #b83e91;
+}
+@media (max-width: 768px) {
+    .area-sos {
+        padding: 15px;
+        margin: 20px auto;
+    }
+
+    .titulo-sos {
+        font-size: 22px;
+        margin: 20px 10px;
+    }
+
+    .cadastro-form {
+        width: 100%;
+        padding: 20px;
+        margin-bottom: 17px;
+    }
+
+    .voltar-login {
+        font-size: 16px;
+    }
+}

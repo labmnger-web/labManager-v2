@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(180deg, #1a8df1, #e245ab);
+}
+.header-content {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #e0e0e0;
+    margin-top: 50px;
+
+}
+
+.header-logo img {
+    width: 300px;
+    margin-top: 20px;
+    
+}
+.login-container {
+    background-color: white;
+    padding: 150px;
+    border-radius: 20px;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 10px;
+    align-self: flex-start;
+}
+
+.login-container input {
+    background: white;
+    border: none;
+    border-bottom: 2px solid #e0e0e0;
+    outline: none;
+    padding: 12px;
+    width: 100%;
+    margin-bottom: 35px;
+    font-size: 20px;
+}
+.login-container h1 {
+    font-size: 30px;
+    color: #0b0b0b;
+    white-space: nowrap;
+    padding: 10px;
+}
+.login-container button {
+    padding: 10px 150px;
+    background-color: #1a8df1;
+    border-radius: 12px;
+    color: white;
+    border: none;
+}
+.cadastro-link {
+    display: block;
+    text-align: left;
+    margin-top: 10px;
+    margin-left: -140px;
+    color: #777375;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.cadastro-link:hover {
+    text-decoration: underline;
+}
+.voltar-login {
+    display: block;
+    text-align: left;
+    margin-top: 20px;
+    margin-left: 10px;
+    color: #777375;
+    text-decoration: none;
+    font-weight: bold;
+}

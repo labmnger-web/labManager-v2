@@ -1,0 +1,87 @@
+.titulo-agendamentos {
+    text-align: center;
+    color: #d856b1;
+    margin: 40px auto;
+    font-size: 28px;
+}
+.area-agendamentos {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #f0c1e2;
+    background-color: white;
+    padding: 40px;
+    width: 550px;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 40px auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.area-agendamentos label {
+    display: block;
+    margin-bottom: 8px;
+    color: #b83e91;
+    font-weight: bold;
+}
+
+.area-agendamentos input {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 1px solid #e5c5dc;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+}
+
+.area-agendamentos input:focus {
+    border-color: #d856b1;
+    box-shadow: 0 0 4px rgba(216, 86, 177, 0.3);
+}
+
+.area-agendamentos button {
+    padding: 13px;
+    background-color: #d856b1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.area-agendamentos button:hover {
+    background-color: #b83e91;
+}
+.area-cards {
+    width: 90%;
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 40px;
+    box-sizing: border-box;
+    border: 1px solid #e245ab;
+    border-radius: 15px;
+}
+@media (max-width: 768px) {
+
+    .area-cards {
+        width: auto;
+        max-width: none;
+        margin: 20px 10px;
+        padding: 15px;
+    }
+
+    .titulo-agendamentos {
+        font-size: 21px;
+        margin: 20px auto;
+    }
+
+    .area-agendamentos {
+        width: 100%;
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+}

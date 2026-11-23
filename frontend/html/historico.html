@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/historico.css">
+
+    <title>LabManager - Histórico</title>
+</head>
+
+<body>
+
+    <header class="header-content">
+        <div class="header-logo">
+            <a href="../html/index.html">
+                <img src="../img/logo.png" alt="Logo">
+            </a>
+        </div>
+
+        <div class="usuario-logado">
+            <span id="nome-usuario">Nome do usuário</span>
+        </div>
+    </header>
+
+    <div class="page-content">
+
+        <aside class="sidebar">
+            <div class="menu-container">
+                <button id="menu-button">☰</button>
+
+                <div id="menu" class="menu">
+                    <a href="../html/index.html">Página inicial</a>
+                    <a href="../html/agendamento.html">Agendamento</a>
+                    <a href="../html/material.html">Materiais</a>
+                     <a href="../html/sos.html">Contatos de emergência</a>
+                    <a href="../html/historico.html">Histórico geral</a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+             <h1 class="titulo-historico">Histórico geral</h1>
+
+            <div class="barra-pesquisa">
+                <input type="text" id="pesquisa" placeholder="Pesquisar...">
+            </div>
+
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Ação</th>
+                            <th>Descrição</th>
+                            <th>Usuário</th>
+                        </tr>
+                    </thead>
+
+                    <tbody></tbody>
+                </table>
+            </div>
+
+        </main>
+
+    </div>
+
+    <footer class="footer">
+        <p>Contato: labmnger@gmail.com</p>
+        <img src="../img/logoif.png" alt="Logo do LabManager">
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../js/proteger.js"></script>
+
+</body>
+</html>

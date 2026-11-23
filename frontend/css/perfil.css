@@ -1,0 +1,138 @@
+
+.perfil-container {
+    width: 80%;
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 25px;
+}
+
+.perfil-container h1 {
+    text-align: center;
+    color: #d856b1;
+    margin: 30px 20px;
+}
+
+.perfil-container > p {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+#form-perfil {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#form-perfil label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#form-perfil input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+}
+
+#form-perfil input:focus {
+    border-color: #d856b1;
+}
+
+#form-perfil button {
+    display: inline-block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #d856b1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#form-perfil button:hover {
+    background-color: #c4429e;
+}
+
+#mensagem {
+    text-align: center;
+}
+
+.perfil-container hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 25px 0;
+}
+
+.excluir-conta {
+    text-align: center;
+    margin: 25px 0;
+}
+
+.excluir-conta h2 {
+    color: #d856b1;
+}
+
+.excluir-conta p {
+    margin-bottom: 20px;
+}
+
+#btn-excluir {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #c44242;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#btn-excluir:hover {
+    background-color: #a83232;
+}
+
+.perfil-container > a {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 8px 15px;
+    background-color: #d856b1;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.perfil-container > a:hover {
+    background-color: #c4429e;
+}
+
+@media (max-width: 768px) {
+
+    .perfil-container {
+        width: 90%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .perfil-container h1 {
+        font-size: 22px;
+        margin: 20px 10px;
+    }
+
+    #form-perfil input {
+        padding: 10px;
+    }
+
+    #form-perfil button,
+    #btn-excluir {
+        width: 100%;
+    }
+
+    .perfil-container > a {
+        margin: 15px 10px;
+    }
+}

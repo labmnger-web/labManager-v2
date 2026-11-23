@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/material.css">
+
+    <title>LabManager - Vidrarias</title>
+</head>
+
+<body>
+
+    <header class="header-content">
+        <div class="header-logo">
+            <a href="../html/index.html">
+                <img src="../img/logo.png" alt="Logo">
+            </a>
+            <div class="usuario-logado">
+                <a href="perfil.html" id="nome-usuario">Nome do usuário</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-content">
+
+        <aside class="sidebar">
+            <div class="menu-container">
+                <button id="menu-button">☰</button>
+
+                <div id="menu" class="menu">
+                    <a href="../html/index.html">Página inicial</a>
+                    <a href="../html/agendamento.html">Agendamento</a>
+                    <a href="../html/material.html">Materiais</a>
+                     <a href="../html/sos.html">Contatos de emergência</a>
+                    <a href="../html/historico.html">Histórico geral</a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <h1 class="titulo-vidrarias">Vidrarias</h1>
+            <div class="barra-pesquisa">
+                <input type="text" id="pesquisa" placeholder="Pesquisar...">
+            </div>
+
+            <div class="filtros-categoria">
+                <button class="filtro ativo" data-categoria="todos">Todos</button>
+                <button class="filtro" data-categoria="vidraria">Vidrarias</button>
+                <button class="filtro" data-categoria="acessorio">Acessórios</button>
+                <button class="filtro" data-categoria="reagente">Reagentes</button>
+                <button class="filtro" data-categoria="equipamento">Equipamentos</button>
+            </div>
+
+            <div class="tabela-container">
+                <table>
+                    
+                    <thead id="cabecalho-tabela"></thead>
+
+                    <tbody id="lista-vidrarias"></tbody>
+
+                    <a href="cadastroVidraria.html" class="botao-cadastro">
+                        + Cadastrar nova vidraria
+                    </a>
+                </table>
+            </div>
+        </main>
+
+    </div>
+
+    <footer class="footer">
+        <p>Contato: labmnger@gmail.com</p>
+        <img src="../img/logoif.png" alt="Logo do LabManager">
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../js/proteger.js"></script>
+    <script src="../js/material.js"></script>
+
+</body>
+
+</html>

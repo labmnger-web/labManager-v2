@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar material - LabManager</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/material.css">
+</head>
+
+<body>
+
+    <header class="header-content">
+        <div class="header-logo">
+            <a href="../html/index.html">
+                <img src="../img/logo.png" alt="Logo">
+            </a>
+
+            <div class="usuario-logado">
+                <span id="nome-usuario">Nome do usuário</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-content">
+
+        <aside class="sidebar">
+            <div class="menu-container">
+                <button id="menu-button">☰</button>
+
+                <div id="menu" class="menu">
+                    <a href="../html/index.html">Página inicial</a>
+                    <a href="../html/agendamento.html">Agendamento</a>
+                    <a href="../html/material.html">Materiais</a>
+                     <a href="../html/sos.html">Contatos de emergência</a>
+                    <a href="../html/historico.html">Histórico geral</a>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+
+            <h1 class="titulo-materiais">Editar material</h1>
+
+            <form class="cadastro-form" id="form-edicao">
+
+                <h2>EDITAR MATERIAL</h2>
+
+                <label for="categoria">Categoria</label>
+                <input type="text" id="categoria" readonly>
+
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" required>
+
+                <label for="descricao">Descrição</label>
+                <textarea id="descricao"></textarea>
+
+                <div id="campo-material">
+                    <label for="material">Material</label>
+                    <input type="text" id="material">
+                </div>
+
+                <div id="campo-capacidade">
+                    <label for="capacidade">Capacidade</label>
+                    <input type="number" step="any" id="capacidade">
+                </div>
+
+                <div id="campo-unidade">
+                    <label for="unidade_medida">Unidade de medida</label>
+                    <input type="text" id="unidade_medida">
+                </div>
+
+                <div id="campo-local">
+                    <label for="local_armazenamento">Local de armazenamento</label>
+                    <input type="text" id="local_armazenamento">
+                </div>
+
+                <div id="campo-quantidade">
+                    <label for="quantidade">Quantidade</label>
+                    <input type="number" step="any" id="quantidade">
+                </div>
+
+                <div id="campo-quantidade-minima">
+                    <label for="quantidade_minima">Quantidade mínima</label>
+                    <input type="number" step="any" id="quantidade_minima">
+                </div>
+
+                <button type="submit">SALVAR ALTERAÇÕES</button>
+
+            </form>
+
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>Contato: labmnger@gmail.com</p>
+        <img src="../img/logoif.png" alt="Logo do LabManager">
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../js/proteger.js"></script>
+    <script src="../js/editarMaterial.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LabManager</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<body>
+
+    <header class="header-content">
+        <div class="header-logo">
+            <a href="../html/index.html">
+                <img src="../img/logo.png" alt="Logo">
+                <div class="usuario-logado">
+                    <a href="perfil.html" id="nome-usuario">
+                        Nome do usuário
+                    </a>
+                </div>
+            </a>
+        </div>
+    </header>
+
+    <div class="page-content">
+
+        <aside class="sidebar">
+            <div class="menu-container">
+
+                <button id="menu-button">☰</button>
+
+                <div id="menu" class="menu">
+                    <a href="../html/index.html">Página inicial</a>
+                    <a href="../html/agendamento.html">Agendamento</a>
+                    <a href="../html/material.html">Materiais</a>
+                     <a href="../html/sos.html">Contatos de emergência</a>
+                    <a href="../html/historico.html">Histórico geral</a>
+                </div>
+
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="mensagem-boas-vindas">
+                <h1>Seja bem-vindo(a) ao LabManager!</h1>
+            </div>
+
+            <div class="area-cards">
+
+                <div class="cards-container">
+
+                    <a href="../html/agendamento.html" class="card-agendamentos">
+                        <img src="../img/agendamentos.png" alt="Agendamentos">
+                        <div class="titulo-card">Agendamentos</div>
+
+                    </a>
+
+                    <a href="../html/material.html" class="card-vidrarias">
+                        <img src="../img/vidrarias.jpg" alt="Vidrarias">
+                        <div class="titulo-card">Vidrarias</div>
+                    </a>
+
+                    <a href="../html/reagente.html" class="card-reagentes">
+                        <img src="../img/reagentes.png" alt="Reagentes">
+                        <div class="titulo-card">Reagentes</div>
+                    </a>
+
+                    <a href="../html/sos.html" class="card-sos">
+                        <img src="../img/sos.png" alt="SOS">
+                        <div class="titulo-card">Contatos de emergência</div>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <footer class="footer">
+        <p>Contato: labmnger@gmail.com</p>
+        <img src="../img/logoif.png" alt="Logo do LabManager">
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../js/perfil.js"></script>
+    <script src="../js/proteger.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,175 @@
+table {
+    width: 95%;
+    margin: 20px auto;
+    border-radius: 12px 12px;
+    text-align: center;
+      background-color: #d856b1;
+}
+.barra-pesquisa {
+    margin: 30px 50px;
+    text-align: right;
+}
+
+.barra-pesquisa input {
+    padding: 9px;
+    width: 260px;
+    border: 2px solid #d856b1;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.barra-pesquisa input:focus {
+    outline: none;
+     padding: 9px;
+    border: 2px solid #d856b1;
+}
+th {
+    padding: 10px 10px;
+    color: #f4f0f2;
+}
+
+.linha-vidrarias td {
+    background-color: #e9ece7;
+    padding: 8px;
+}
+
+.linha-vidrarias td:first-child {
+    border-radius: 70px 0 0 70px;
+}
+
+.linha-vidrarias td:last-child {
+    border-radius: 0 70px 70px 0;
+}
+
+button img {
+    width: 18px;
+    height: 18px;
+}
+
+.main-content form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 30px auto;
+    gap: 10px;
+}
+
+.main-content form input {
+    padding: 10px;
+    border: 1px solid #d856b1;
+    border-radius: 8px;
+}
+
+.main-content form button {
+    padding: 12px;
+    background-color: #d856b1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.titulo-vidrarias {
+    color: #d856b1;
+    text-align: center;  
+    margin-top: 50px;    
+    margin-bottom: 25px;  
+}
+.descricao-cadastro {
+    text-align: center;
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.cadastro-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 450px;
+    margin:   0 auto 50px;
+    padding: 35px;
+    background-color: white;
+    border: 1px solid #dce8f5;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.cadastro-form label {
+    color: #d856b1;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.cadastro-form input {
+    padding: 12px;
+    border: 1px solid #cbd8e6;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+}
+
+.cadastro-form input:focus {
+    border-color: #d856b1;
+    box-shadow: 0 0 4px rgba(53, 124, 196, 0.3);
+}
+
+.cadastro-form button {
+    margin-top: 20px;
+    padding: 13px;
+    background-color: #d856b1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cadastro-form button:hover {
+    background-color: #d856b1;
+}
+.botao-cadastro {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 0 20px;
+    background-color: #d856b1;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.botao-cadastro:hover {
+    background-color: #d856b1;
+}
+.tabela-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+
+    .titulo-vidrarias {
+        width: auto;
+        margin: 20px 10px;
+        font-size: 21px;
+        padding: 10px;
+    }
+
+    .cadastro-form {
+        width: auto;
+        max-width: none;
+        margin: 20px 10px;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .cadastro-form input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .cadastro-form button {
+        width: 100%;
+    }
+
+}

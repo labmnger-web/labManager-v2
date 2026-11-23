@@ -1,0 +1,181 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Turno {
+  MANHA
+  TARDE
+  NOITE
+}
+
+enum Status {
+    PENDENTE
+    COMPRADO
+    CANCELADO
+}
+
+model acessorio {
+  id                     Int                   @id @default(autoincrement())
+  nome                   String
+  descricao              String?
+  material               String
+  local_armazenamento    String
+  quantidade             Int
+  quantidade_minima      Int
+  pedido_acessorio       pedido_acessorio[]
+  procedimento_acessorio procedimento_acessorio[]
+}
+
+model agendamento {
+  id         Int     @id @default(autoincrement())
+  data       DateTime   @db.Date
+  turno      Turno
+  descricao  String?
+  id_usuario Int
+  usuario    usuario   @relation(fields: [id_usuario], references: [id], onDelete: Cascade)
+}
+
+model equipamento {
+  id                       Int                     @id @default(autoincrement())
+  nome                     String
+  descricao                String?
+  material                 String
+  pedido_equipamento       pedido_equipamento[]
+  procedimento_equipamento procedimento_equipamento[]
+}
+
+model pedido {
+  id                     Int                   @id @default(autoincrement())
+  id_usuario             Int
+  data                   DateTime                 @db.Date
+  status                 Status                   @default(PENDENTE)
+  usuario                usuario                  @relation(fields: [id_usuario], references: [id], onDelete: Cascade)
+  pedido_acessorio       pedido_acessorio[]
+  pedido_equipamento     pedido_equipamento[]
+  pedido_produto_quimico pedido_produto_quimico[]
+  pedido_vidraria        pedido_vidraria[]
+}
+
+model pedido_acessorio {
+  id           Int     @id @default(autoincrement())
+  quantidade   Int
+  id_pedido    Int
+  id_acessorio Int
+  acessorio    acessorio @relation(fields: [id_acessorio], references: [id], onDelete: Cascade)
+  pedido       pedido    @relation(fields: [id_pedido], references: [id], onDelete: Cascade)
+}
+
+model pedido_equipamento {
+  id             Int       @id @default(autoincrement())
+  id_pedido      Int
+  id_equipamento Int
+  equipamento    equipamento @relation(fields: [id_equipamento], references: [id], onDelete: Cascade)
+  pedido         pedido      @relation(fields: [id_pedido], references: [id], onDelete: Cascade)
+}
+
+model pedido_produto_quimico {
+  id                 Int           @id @default(autoincrement())
+  id_pedido          Int
+  id_produto_quimico Int
+  quantidade         Float
+  pedido             pedido          @relation(fields: [id_pedido], references: [id], onDelete: Cascade)
+  produto_quimico    produto_quimico @relation(fields: [id_produto_quimico], references: [id], onDelete: Cascade)
+}
+
+model pedido_vidraria {
+  id          Int        @id @default(autoincrement())
+  id_pedido   Int
+  id_vidraria Int
+  quantidade  Int
+  pedido      pedido       @relation(fields: [id_pedido], references: [id], onDelete: Cascade)
+  vidraria    vidraria     @relation(fields: [id_vidraria], references: [id], onDelete: Cascade)
+}
+
+model procedimento {
+  id                           Int                         @id @default(autoincrement())
+  id_usuario                   Int
+  nome                         String
+  descricao                    String?
+  data                         DateTime                       @db.Date
+  usuario                      usuario                       @relation(fields: [id_usuario], references: [id], onDelete: Restrict)
+  procedimento_acessorio       procedimento_acessorio[]
+  procedimento_equipamento     procedimento_equipamento[]
+  procedimento_produto_quimico procedimento_produto_quimico[]
+  procedimento_vidraria        procedimento_vidraria[]
+}
+
+model procedimento_acessorio {
+  id              Int       @id @default(autoincrement())
+  id_procedimento Int
+  id_acessorio    Int
+  quantidade      Int
+  acessorio       acessorio   @relation(fields: [id_acessorio], references: [id], onDelete: Restrict)
+  procedimento    procedimento @relation(fields: [id_procedimento], references: [id], onDelete: Restrict)
+}
+
+model procedimento_equipamento {
+  id              Int       @id @default(autoincrement())
+  id_procedimento Int
+  id_equipamento  Int
+  equipamento     equipamento @relation(fields: [id_equipamento], references: [id], onDelete: Restrict)
+  procedimento    procedimento @relation(fields: [id_procedimento], references: [id], onDelete: Restrict)
+}
+
+model procedimento_produto_quimico {
+  id                 Int          @id @default(autoincrement())
+  id_produto_quimico Int
+  id_procedimento    Int
+  quantidade         Float
+  procedimento       procedimento   @relation(fields: [id_procedimento], references: [id], onDelete: Restrict)
+  produto_quimico    produto_quimico @relation(fields: [id_produto_quimico], references: [id], onDelete: Restrict)
+}
+
+model procedimento_vidraria {
+  id              Int       @id @default(autoincrement())
+  id_procedimento Int
+  id_vidraria     Int
+  quantidade      Int
+  procedimento    procedimento @relation(fields: [id_procedimento], references: [id], onDelete: Restrict)
+  vidraria        vidraria    @relation(fields: [id_vidraria], references: [id], onDelete: Restrict)
+}
+
+model produto_quimico {
+  id                           Int                         @id @default(autoincrement())
+  nome                         String                         @unique
+  descricao                    String?
+  unidade_medida               String
+  local_armazenamento          String
+  quantidade                   Float
+  quantidade_minima            Float
+  pedido_produto_quimico       pedido_produto_quimico[]
+  procedimento_produto_quimico procedimento_produto_quimico[]
+}
+
+model usuario {
+  id           Int         @id @default(autoincrement())
+  nome         String
+  senha        String
+  email        String         @unique
+  agendamento  agendamento[]
+  pedido       pedido[]
+  procedimento procedimento[]
+}
+
+model vidraria {
+  id                           Int                         @id @default(autoincrement())
+  nome                         String                      @unique
+  descricao                    String?
+  material                     String
+  capacidade                   Float
+  unidade_medida               String
+  local_armazenamento          String
+  quantidade                   Float
+  quantidade_minima            Float
+  pedido_vidraria       pedido_vidraria[]
+  procedimento_vidraria procedimento_vidraria[]
+}
