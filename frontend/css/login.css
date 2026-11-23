@@ -23,13 +23,13 @@ body {
 }
 .login-container {
     background-color: white;
-    padding: 150px;
+    padding: 20px 100px;
     border-radius: 20px;
-    width: 280px;
+    width: 550px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 .login-container label {
@@ -44,8 +44,8 @@ body {
     border-bottom: 2px solid #e0e0e0;
     outline: none;
     padding: 12px;
-    width: 100%;
-    margin-bottom: 35px;
+    width: 90%;
+    margin-bottom: 20px;
     font-size: 20px;
 }
 .login-container h1 {
@@ -65,7 +65,7 @@ body {
     display: block;
     text-align: left;
     margin-top: 10px;
-    margin-left: -140px;
+    margin: 40px;
     color: #777375;
     text-decoration: none;
     font-weight: bold;
@@ -82,4 +82,26 @@ body {
     color: #777375;
     text-decoration: none;
     font-weight: bold;
+}
+@media (max-width: 768px) {
+    .login-container {
+        padding: 40px;
+        width: 90%;
+        max-width: 400px;
+        box-sizing: border-box;
+    }
+    .header-logo img {
+    width: 180px;
+        max-width: 100%;
+    }
+
+    .login-container h1 {
+        font-size: 22px;
+        white-space: normal;
+        text-align: center;
+    }
+    .login-container input {
+    width: 100%;
+    box-sizing: border-box;
+    }
 }
