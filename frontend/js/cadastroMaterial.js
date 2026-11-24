@@ -13,10 +13,10 @@
     const token = localStorage.getItem('token');
 
     const APIS = {
-        vidraria: 'http://localhost:5000/vidraria',
-        acessorio: 'http://localhost:5000/acessorio',
-        reagente: 'http://localhost:5000/reagente',
-        equipamento: 'http://localhost:5000/equipamento'
+        vidraria: 'http://192.168.2.106:5000/vidraria',
+        acessorio: 'http://192.168.2.106:5000/acessorio',
+        reagente: 'http://192.168.2.106:5000/reagente',
+        equipamento: 'http://192.168.2.106:5000/equipamento'
     };
 
     if (!token) {
@@ -40,7 +40,7 @@
             );
 
             const resposta = await fetch(
-                `http://localhost:5000/usuario/${payload.id}`,
+                `http://192.168.2.106:5000/usuario/${payload.id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`

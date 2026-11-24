@@ -17,7 +17,7 @@ if (!token) {
             const idUsuario = payload.id;
 
             const response = await fetch(
-                `http://localhost:5000/usuario/${idUsuario}`,
+                `http://192.168.2.106:5000/usuario/${idUsuario}`,
                 {
                     method: 'GET',
                     headers: {

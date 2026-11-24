@@ -19,7 +19,7 @@ const mensagem = document.getElementById('mensagem');
 async function carregarPerfil() {
     try {
         const response = await fetch(
-            `http://localhost:5000/usuario/${idUsuario}`,
+            `http://192.168.2.106:5000/usuario/${idUsuario}`,
             {
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -57,7 +57,7 @@ formPerfil.addEventListener('submit', async (event) => {
 
     try {
         const response = await fetch(
-            `http://localhost:5000/usuario/${idUsuario}`,
+            `http://192.168.2.106:5000/usuario/${idUsuario}`,
             {
                 method: 'PUT',
                 headers: {
@@ -98,7 +98,7 @@ document.getElementById('btn-excluir').addEventListener('click', async () => {
 
     try {
         const response = await fetch(
-            `http://localhost:5000/usuario/${idUsuario}`,
+            `http://192.168.2.106:5000/usuario/${idUsuario}`,
             {
                 method: 'DELETE',
                 headers: {

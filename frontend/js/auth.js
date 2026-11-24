@@ -10,7 +10,7 @@ if (formLogin) {
 
         try {
             const response = await fetch(
-                'http://localhost:5000/auth/login',
+                'http://192.168.2.106:5000/auth/login',
                 {
                     method: 'POST',
                     headers: {
