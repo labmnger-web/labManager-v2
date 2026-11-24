@@ -85,13 +85,14 @@ body {
 }
 @media (max-width: 768px) {
     .login-container {
-        padding: 40px;
+        padding: 25px;
         width: 90%;
         max-width: 400px;
         box-sizing: border-box;
     }
+
     .header-logo img {
-    width: 180px;
+        width: 180px;
         max-width: 100%;
     }
 
@@ -100,8 +101,15 @@ body {
         white-space: normal;
         text-align: center;
     }
+
     .login-container input {
-    width: 100%;
-    box-sizing: border-box;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .login-container button {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
     }
 }
