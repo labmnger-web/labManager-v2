@@ -84,10 +84,15 @@ body {
     font-weight: bold;
 }
 @media (max-width: 768px) {
+    body {
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
     .login-container {
-        padding: 25px;
-        width: 90%;
+        width: 100%;
         max-width: 400px;
+        padding: 20px;
         box-sizing: border-box;
     }
 
@@ -102,8 +107,14 @@ body {
         text-align: center;
     }
 
+    .login-container label {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
     .login-container input {
         width: 100%;
+        max-width: 100%;
         box-sizing: border-box;
     }
 
@@ -111,5 +122,10 @@ body {
         width: 100%;
         padding: 10px;
         box-sizing: border-box;
+    }
+
+    .cadastro-link,
+    .voltar-login {
+        margin: 15px 0;
     }
 }
