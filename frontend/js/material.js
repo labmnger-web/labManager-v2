@@ -7,7 +7,7 @@
         equipamento: 'http://192.168.2.106:5000/equipamento'
     };
 
-    const listaMateriais = document.getElementById('lista-vidrarias');
+    const listaMateriais = document.getElementById('lista-materiais');
     const cabecalhoTabela = document.getElementById('cabecalho-tabela');
     const campoPesquisa = document.getElementById('pesquisa');
     const nomeUsuario = document.getElementById('nome-usuario');
