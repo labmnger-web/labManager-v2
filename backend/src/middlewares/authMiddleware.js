@@ -20,7 +20,7 @@ function authMiddleware(req, res, next) {
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    req.usuario = decoded;
+    req.userId = decoded;
 
     next();
 

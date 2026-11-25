@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/agendamentos.css">
 
-    <title>LabManager - Agendamento do laboraório de química</title>
+    <title>LabManager - Agendamento</title>
 </head>
 
 <body>
@@ -17,9 +18,10 @@
             <a href="../html/index.html">
                 <img src="../img/logo.png" alt="Logo">
             </a>
-            <div class="usuario-logado">
-                <span id="nome-usuario">Nome do usuário</span>
-            </div>
+        </div>
+
+        <div class="usuario-logado">
+            <span id="nome-usuario">Nome do usuário</span>
         </div>
     </header>
 
@@ -38,24 +40,29 @@
                 </div>
             </div>
         </aside>
-        <div class="area-cards">
-            <main class="main-content">
-                <h1 class="titulo-agendamentos">Agendamento do laboratório de química - IFRS </h1>
-                <form class="area-agendamentos" action="/agendamentos" method="POST">
 
-                    <label for="professor">Professor(a):</label>
-                    <input type="text" id="professor" name="professor" placeholder="Professor, digite seu nome"
-                        required>
+        <main class="main-content">
+            <h1 class="titulo-agendamentos">Agendamentos</h1>
 
-                    <label for="horario">Turno:</label>
-                    <input type="text" id="horario" name="horario" placeholder="Ex: Tarde" required>
+            <div class="barra-pesquisa">
+                <input type="text" id="pesquisa" placeholder="Pesquisar por usuário ou data (DD/MM/AAAA)...">
+            </div>
 
-                    <label for="horario">Horário:</label>
-                    <input type="number" id="horario" name="horario" placeholder="Ex: 14" required>
-                    <button type="submit">Agendar</button>
+            <div class="tabela-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Turno</th>
+                            <th>Usuário</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
 
-                </form>
-        </div>
+                    <tbody id="lista-agendamentos"></tbody>
+                </table>
+            </div>
+
         </main>
 
     </div>
@@ -66,8 +73,8 @@
     </footer>
 
     <script src="../script.js"></script>
-
     <script src="../js/proteger.js"></script>
+    <script src="../js/agendamento.js"></script>
 
 </body>
 

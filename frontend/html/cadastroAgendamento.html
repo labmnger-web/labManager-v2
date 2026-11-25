@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/agendamentos.css">
+
+    <title>Agendamento do laboraório de química - LabManager</title>
+</head>
+
+<body>
+
+    <header class="header-content">
+        <div class="header-logo">
+            <a href="../html/index.html">
+                <img src="../img/logo.png" alt="Logo">
+            </a>
+            <div class="usuario-logado">
+                <span id="nome-usuario">Nome do usuário</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-content">
+
+        <aside class="sidebar">
+            <div class="menu-container">
+                <button id="menu-button">☰</button>
+
+                <div id="menu" class="menu">
+                    <a href="../html/index.html">Página inicial</a>
+                    <a href="../html/agendamento.html">Agendamento</a>
+                    <a href="../html/material.html">Materiais</a>
+                    <a href="../html/sos.html">Contatos de emergência</a>
+                    <a href="../html/historico.html">Histórico geral</a>
+                </div>
+            </div>
+        </aside>
+        <div class="area-cards">
+            <main class="main-content">
+                <h1 class="titulo-agendamentos">Agendamento do laboratório de química - IFRS </h1>
+                <form class="area-agendamentos" action="/agendamento" method="POST">
+
+                    <label for="data">Data:</label>
+                    <input type="date" id="data" name="data" required>
+
+                    <label for="turno">Turno:</label>
+                    <select id="turno" name="turno" required>
+                        <option value="">Selecione o turno</option>
+                        <option value="MANHA">Manhã</option>
+                        <option value="TARDE">Tarde</option>
+                        <option value="NOITE">Noite</option>
+                    </select>
+
+                    <label for="professor">Professor(a):</label>
+                    <input type="text" id="professor" name="professor" placeholder="Professor, digite seu nome"
+                        required>
+
+                    <label for="descricao">Descrição (opcional):</label>
+                    <input type="text" id="descricao" name="descricao" placeholder="Ex: Aula prática de titulação">
+
+                    <button type="submit">Agendar</button>
+
+                </form>
+        </div>
+        </main>
+
+    </div>
+
+    <footer class="footer">
+        <p>Contato: labmnger@gmail.com</p>
+        <img src="../img/logoif.png" alt="Logo do LabManager">
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="../js/proteger.js"></script>
+    <script src="../js/cadastroAgendamento.js"></script>
+
+</body>
+
+</html>

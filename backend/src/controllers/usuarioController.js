@@ -1,5 +1,4 @@
 const prisma = require('../lib/prisma');
-
 const bcrypt = require('bcrypt');
 
 module.exports = {
@@ -82,7 +81,7 @@ module.exports = {
         where: { id }
       });
 
-      res.status(200).json({message: 'Conta excluída com sucesso.'});
+      res.status(200).json({message: 'Conta excluída com sucesso.', usuario});
     } catch (error) {
       console.error('Erro ao deletar usuário:', error);
       res.status(500).json({ error: 'Erro ao deletar usuário' });
@@ -119,7 +118,7 @@ module.exports = {
         }
       });
 
-      res.status(200).json({message: 'Usuário atualizado com sucesso.'});
+      res.status(200).json({message: 'Usuário atualizado com sucesso.', userUpdate});
     } catch (error) {
       console.error('Erro ao atualizar usuário:', error);
       res.status(500).json({ error: 'Erro ao atualizar usuário' });

@@ -19,6 +19,8 @@ const equipamentoRoutes = require('./src/routes/equipamentoRoutes.js');
 const produtoQuimicoRoutes = require('./src/routes/produtoQuimicoRoutes.js');
 const acessorioRoutes = require('./src/routes/acessorioRoutes.js');
 const vidrariaRoutes = require('./src/routes/vidrariaRoutes.js');
+const historicoRoutes = require('./src/routes/historicoRoutes.js');
+const agendamentoRoutes = require('./src/routes/agendamentoRoutes.js');
 
 app.use('/auth', authRoutes);
 app.use('/usuario', usuarioRoutes);
@@ -26,7 +28,8 @@ app.use('/equipamento', equipamentoRoutes);
 app.use('/reagente', produtoQuimicoRoutes);
 app.use('/acessorio', acessorioRoutes);
 app.use('/vidraria', vidrariaRoutes);
-
+app.use('/historico', historicoRoutes);
+app.use('/agendamento', agendamentoRoutes);
 
 const PORT = process.env.PORT || 5000;
 

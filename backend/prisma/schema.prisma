@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -17,6 +17,19 @@ enum Status {
     PENDENTE
     COMPRADO
     CANCELADO
+}
+
+enum Acao {
+  CRIOU
+  DELETOU
+  EDITOU
+}
+
+enum Categoria {
+  ACESSORIO
+  EQUIPAMENTO
+  REAGENTE
+  VIDRARIA
 }
 
 model acessorio {
@@ -47,6 +60,15 @@ model equipamento {
   material                 String
   pedido_equipamento       pedido_equipamento[]
   procedimento_equipamento procedimento_equipamento[]
+}
+
+model historico {
+  id          Int      @id @default(autoincrement())
+  acao        Acao   
+  categoria   Categoria  
+  item_nome   String   
+  id_usuario  Int
+  usuario     usuario  @relation(fields: [id_usuario], references: [id])
 }
 
 model pedido {
@@ -164,6 +186,7 @@ model usuario {
   agendamento  agendamento[]
   pedido       pedido[]
   procedimento procedimento[]
+  historico    historico[]
 }
 
 model vidraria {

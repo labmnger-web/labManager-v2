@@ -1,5 +1,7 @@
 const prisma = require('../lib/prisma');
 
+const registrarHistorico = require('../utils/registrarHistorico');
+
 module.exports = {
   async getAllAccessories(req, res) {
     try {
@@ -79,6 +81,14 @@ module.exports = {
         }
       });
 
+      await registrarHistorico({
+        acao: 'CRIOU',
+        categoria: 'ACESSORIO',
+        item_nome: newAccessory.nome,
+        detalhes: `Quantidade inicial: ${novoItem.quantidade ?? '-'}`,
+        id_usuario: req.userId
+      });
+
       return res.status(201).json({
         message: 'Acessório cadastrado com sucesso!', acessorio: newAccessory
       });
@@ -100,8 +110,20 @@ module.exports = {
         return res.status(400).json({ error: 'ID do acessório é obrigatório' });
       }
 
+      const accessory = await prisma.acessorio.findUnique({
+            where: { id: Number(id) }
+        });
+
       const acessorio = await prisma.acessorio.delete({
         where: { id: parseInt(id) }
+      });
+
+      await registrarHistorico({
+        acao: 'DELETOU',
+        categoria: 'ACESSORIO', 
+        item_nome: accessory.nome,
+        detalhes: `Quantidade inicial: ${novoItem.quantidade ?? '-'}`,
+        id_usuario: req.userId
       });
 
       res.status(200).json(acessorio);
@@ -130,6 +152,13 @@ module.exports = {
           quantidade: parseInt(quantidade),
           quantidade_minima: parseInt(quantidade_minima)
         }
+      });
+
+      await registrarHistorico({
+        acao: 'EDITOU',
+        categoria: 'ACESSORIO',
+        item_nome: accessoryUpdate.nome,
+        id_usuario: req.userId
       });
 
       res.status(200).json(accessoryUpdate);

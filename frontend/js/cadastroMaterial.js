@@ -2,6 +2,14 @@
 (() => {
     const formulario = document.querySelector('.cadastro-form');
     const categoria = document.getElementById('categoria');
+    const token = localStorage.getItem('token');
+
+    const APIS = {
+        vidraria: 'http://localhost:5000/vidraria',
+        acessorio: 'http://localhost:5000/acessorio',
+        reagente: 'http://localhost:5000/reagente',
+        equipamento: 'http://localhost:5000/equipamento'
+    };
 
     const campoMaterial = document.getElementById('campo-material');
     const campoCapacidade = document.getElementById('campo-capacidade');
@@ -10,14 +18,8 @@
     const inputCapacidade = document.getElementById('capacidade');
     const inputUnidade = document.getElementById('unidade_medida');
 
-    const token = localStorage.getItem('token');
 
-    const APIS = {
-        vidraria: 'http://192.168.2.106:5000/vidraria',
-        acessorio: 'http://192.168.2.106:5000/acessorio',
-        reagente: 'http://192.168.2.106:5000/reagente',
-        equipamento: 'http://192.168.2.106:5000/equipamento'
-    };
+    
 
     if (!token) {
         window.location.href = 'login.html';
@@ -40,7 +42,7 @@
             );
 
             const resposta = await fetch(
-                `http://192.168.2.106:5000/usuario/${payload.id}`,
+                `http://localhost:5000/usuario/${payload.id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -125,7 +127,7 @@
 
             alert('Material cadastrado com sucesso!');
 
-            window.location.href = 'vidraria.html';
+            window.location.href = 'material.html';
 
         } catch (error) {
             console.error('Erro ao cadastrar material:', error);

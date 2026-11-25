@@ -76,6 +76,14 @@ module.exports = {
         }
       });
 
+      await registrarHistorico({
+        acao: 'CRIOU',
+        categoria: 'EQUIPAMENTO',
+        item_nome: newEquipment.nome,
+        id_usuario: req.userId
+      });
+
+
       return res.status(201).json({
         message: 'Equipamento cadastrado com sucesso!', equipamento: newEquipment
       });
@@ -97,8 +105,19 @@ module.exports = {
         return res.status(400).json({ error: 'ID do equipamento é obrigatório' });
       }
 
+      const equipment = await prisma.equipamento.findUnique({
+        where: { id: parseInt(id) }
+      });
+
       const equipamento = await prisma.equipamento.delete({
         where: { id: parseInt(id) }
+      });
+
+      await registrarHistorico({
+        acao: 'DELETOU',
+        categoria: 'EQUIPAMENTO',
+        item_nome: equipment.nome,
+        id_usuario: req.userId
       });
 
       res.status(200).json(equipamento);
@@ -117,7 +136,7 @@ module.exports = {
         return res.status(400).json({ error: 'Preencha os campos obrigatórios' });
       }
 
-      const EquipmentUpdate = await prisma.equipamento.update({
+      const equipmentUpdate = await prisma.equipamento.update({
         where: { id: parseInt(id) },
         data: {
           nome: nome.trim().toLowerCase(),
@@ -126,7 +145,14 @@ module.exports = {
         }
       });
 
-      res.status(200).json(EquipmentUpdate);
+      await registrarHistorico({
+        acao: 'EDITOU',
+        categoria: 'EQUIPAMENTO',
+        item_nome: equipmentUpdate.nome,
+        id_usuario: req.userId
+      });
+
+      res.status(200).json(equipmentUpdate);
     } catch (error) {
       console.error('Erro ao atualizar equipamento:', error);
       res.status(500).json({ error: 'Erro ao atualizar equipamento' });

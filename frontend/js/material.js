@@ -1,10 +1,10 @@
 
 (() => {
     const APIS = {
-        vidraria: 'http://192.168.2.106:5000/vidraria',
-        acessorio: 'http://192.168.2.106:5000/acessorio',
-        reagente: 'http://192.168.2.106:5000/reagente',
-        equipamento: 'http://192.168.2.106:5000/equipamento'
+        vidraria: 'http://localhost:5000/vidraria',
+        acessorio: 'http://localhost:5000/acessorio',
+        reagente: 'http://localhost:5000/reagente',
+        equipamento: 'http://localhost:5000/equipamento'
     };
 
     const listaMateriais = document.getElementById('lista-materiais');
@@ -38,7 +38,7 @@
             );
 
             const resposta = await fetch(
-                `http://192.168.2.106:5000/usuario/${payload.id}`,
+                `http://localhost:5000/usuario/${payload.id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`

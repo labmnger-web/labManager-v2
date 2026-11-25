@@ -1,5 +1,4 @@
 const prisma = require('../lib/prisma');
-
 module.exports = {
   async getAllGlassware(req, res) {
     try {
@@ -80,6 +79,13 @@ module.exports = {
         }
       });
 
+      await registrarHistorico({
+        acao: 'CRIOU',
+        categoria: 'VIDRARIA',
+        item_nome: newGlassware.nome,
+        id_usuario: req.userId
+      });
+
       return res.status(201).json({
         message: 'vidraria cadastrada com sucesso!', vidraria: newGlassware
       });
@@ -101,8 +107,19 @@ module.exports = {
         return res.status(400).json({ error: 'ID da vidraria é obrigatório' });
       }
 
+      const glassware = await prisma.vidraria.findUnique({
+        where: { id : parseInt(id) }
+      })
+
       const vidraria = await prisma.vidraria.delete({
         where: { id: parseInt(id) }
+      });
+
+      await registrarHistorico({
+        acao: 'DELETOU',
+        categoria: 'VIDRARIA',
+        item_nome: glassware.nome,
+        id_usuario: req.userId
       });
 
       res.status(200).json(vidraria);
@@ -135,6 +152,13 @@ module.exports = {
           quantidade: parseInt(quantidade),
           quantidade_minima: parseInt(quantidade_minima)
         }
+      });
+
+      await registrarHistorico({
+        acao: 'EDITOU',
+        categoria: 'VIDRARIA',
+        item_nome: GlasswareUpdate.nome,
+        id_usuario: req.userId
       });
 
       res.status(200).json(GlasswareUpdate);

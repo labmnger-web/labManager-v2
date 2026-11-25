@@ -1,10 +1,9 @@
 const prisma = require('../lib/prisma');
-
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-module.exports = {  
-  
+module.exports = {
+
   async login(req, res) {
     try {
       const { email, senha } = req.body;
@@ -61,5 +60,30 @@ module.exports = {
         error: 'Erro ao realizar login'
       });
     }
+  },
+
+  async verifyLogin(req, res, next) {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader) {
+      return res.status(401).json({ erro: 'Token não fornecido' })
+    }
+    const parts = authHeader.split(' ');
+
+    const token = parts[1];
+
+    try{
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      req.userId = decoded.id
+
+      return next();
+    } catch (error) {
+      console.error('Token inválido ou expirado:', error);
+
+      return res.status(401).json({
+        error: 'Token inválido ou expirado'
+      });
+    }
   }
+
 }

@@ -1,5 +1,4 @@
 const prisma = require('../lib/prisma');
-
 module.exports = {
   async getAllChemicals(req, res) {
     try {
@@ -79,6 +78,13 @@ module.exports = {
         }
       });
 
+      await registrarHistorico({
+        acao: 'CRIOU',
+        categoria: 'REAGENTE',
+        item_nome: newChemical.nome,
+        id_usuario: req.userId
+      });
+
       return res.status(201).json({
         message: 'produto quimico cadastrado com sucesso!', produto_quimico: newChemical
       });
@@ -100,8 +106,19 @@ module.exports = {
         return res.status(400).json({ error: 'ID do produto quimico é obrigatório' });
       }
 
+      const chemical = await prisma.produto_quimico.findUnique({
+        where: { id: parseInt(id) }
+      });
+
       const produto_quimico = await prisma.produto_quimico.delete({
         where: { id: parseInt(id) }
+      });
+
+      await registrarHistorico({
+        acao: 'DELETOU',
+        categoria: 'REAGENTE',
+        item_nome: chemical.nome,
+        id_usuario: req.userId
       });
 
       res.status(200).json(produto_quimico);
@@ -130,6 +147,13 @@ module.exports = {
           quantidade: parseInt(quantidade),
           quantidade_minima: parseInt(quantidade_minima)
         }
+      });
+
+      await registrarHistorico({
+        acao: 'EDITOU',
+        categoria: 'REAGENTE',
+        item_nome: ChemicalUpdate.nome,
+        id_usuario: req.userId
       });
 
       res.status(200).json(ChemicalUpdate);
