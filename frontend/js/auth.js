@@ -11,7 +11,7 @@
 
             try {
                 const response = await fetch(
-                    'http://192.168.2.106:5000/auth/login',
+                    'http://localhost:5000/auth/login',
                     {
                         method: 'POST',
                         headers: {

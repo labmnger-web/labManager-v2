@@ -1,97 +1,119 @@
 .perfil-container {
     width: 90%;
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #d856b1;
-    border-radius: 15px;
+    max-width: 750px;
+    margin: 35px auto;
+    padding: 35px;
+    background-color: white;
+    border: 1px solid #f0c5df;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(216, 86, 177, 0.10);
     box-sizing: border-box;
 }
 
 .perfil-container h1 {
     text-align: center;
     color: #d856b1;
-    margin: 15px 10px;
-    font-size: 26px;
+    margin: 10px 0 15px;
+    font-size: 28px;
 }
 
 .perfil-container > p {
     text-align: center;
-    margin-bottom: 25px;
+    color: #666;
+    margin-bottom: 30px;
 }
 
 #form-perfil {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
 }
 
 #form-perfil label {
     font-weight: bold;
-    margin-top: 10px;
+    color: #b84491;
+    margin-top: 12px;
 }
 
 #form-perfil input {
     width: 100%;
     box-sizing: border-box;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    outline: none;
+    padding: 12px 14px;
+    background-color: #fffafd;
+    border: 1px solid #e8c6dc;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: 0.2s;
 }
 
 #form-perfil input:focus {
     border-color: #d856b1;
+    outline: none;
+    box-shadow: 0 0 5px rgba(216, 86, 177, 0.20);
+    background-color: white;
 }
 
 #form-perfil button {
-    display: inline-block;
-    margin: 20px auto;
-    padding: 10px 20px;
+    display: block;
+    width: 200px;
+    margin: 25px auto 10px;
+    padding: 12px;
     background-color: #d856b1;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
+    font-size: 15px;
     font-weight: bold;
     cursor: pointer;
+    transition: 0.2s;
 }
 
 #form-perfil button:hover {
     background-color: #c4429e;
+    transform: translateY(-1px);
 }
 
 #mensagem {
     text-align: center;
+    margin: 15px 0;
 }
 
 .perfil-container hr {
     border: none;
-    border-top: 1px solid #ddd;
-    margin: 25px 0;
+    border-top: 1px solid #f0d5e6;
+    margin: 35px 0;
 }
 
 .excluir-conta {
     text-align: center;
-    margin: 25px 0;
+    margin: 25px 0 10px;
+    padding: 20px;
+    background-color: #fff8f8;
+    border: 1px solid #f1dada;
+    border-radius: 12px;
 }
 
 .excluir-conta h2 {
-    color: #d856b1;
+    color: #c44242;
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
 .excluir-conta p {
+    color: #666;
     margin-bottom: 20px;
 }
 
 #btn-excluir {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 11px 20px;
     background-color: #c44242;
     color: white;
     border: none;
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
+    transition: 0.2s;
 }
 
 #btn-excluir:hover {
@@ -100,42 +122,58 @@
 
 .perfil-container > a {
     display: inline-block;
-    margin: 20px 0;
-    padding: 8px 15px;
-    background-color: #d856b1;
-    color: white;
+    margin: 20px 0 0;
+    padding: 10px 18px;
+    background-color: #fce4f3;
+    color: #b84491;
     text-decoration: none;
     border-radius: 8px;
     font-weight: bold;
+    transition: 0.2s;
 }
 
 .perfil-container > a:hover {
-    background-color: #c4429e;
+    background-color: #f5cce6;
 }
 
 @media (max-width: 768px) {
 
     .perfil-container {
-        width: 90%;
-        padding: 10px;
-        box-sizing: border-box;
+        width: 95%;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 15px;
     }
 
     .perfil-container h1 {
-        font-size: 22px;
-        margin: 20px 10px;
+        font-size: 23px;
+        margin: 15px 5px;
+    }
+
+    .perfil-container > p {
+        font-size: 14px;
     }
 
     #form-perfil input {
-        padding: 10px;
+        padding: 11px;
+        font-size: 14px;
     }
 
-    #form-perfil button,
+    #form-perfil button {
+        width: 100%;
+    }
+
     #btn-excluir {
         width: 100%;
     }
 
+    .excluir-conta {
+        padding: 15px;
+    }
+
     .perfil-container > a {
-        margin: 15px 10px;
+        display: block;
+        text-align: center;
+        margin: 20px 0 0;
     }
 }

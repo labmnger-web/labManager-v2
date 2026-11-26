@@ -12,6 +12,7 @@
 
     const campoData = document.getElementById('data');
     const campoTurno = document.getElementById('turno');
+    const campoNome = document.getElementById('professor');
     const campoDescricao = document.getElementById('descricao');
 
     // Decodifica o JWT e preenche o nome do usuário no cabeçalho
@@ -71,6 +72,7 @@
             try {
                 const data = campoData.value;
                 const turno = campoTurno.value;
+                const nome = campoNome.value;
                 const descricao = campoDescricao ? campoDescricao.value.trim() : '';
 
                 if (!data || !turno) {
@@ -81,6 +83,7 @@
                 const dadosAgendamento = {
                     data,
                     turno,
+                    nome,
                     descricao
                 };
 

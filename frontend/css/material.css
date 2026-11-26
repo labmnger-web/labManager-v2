@@ -1,32 +1,80 @@
 .tabela-container {
-    width: 100%;
+    width: 98%;
+    margin: 10px auto;
     overflow-x: auto;
 }
 
 .tabela-container table {
     width: 100%;
     border-collapse: collapse;
+    font-size: 12px;
+    border: 1px solid #e245ab;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-.tabela-container th,
+.tabela-container th {
+    background-color: #e245ab;
+    color: white;
+    padding: 8px;
+    font-size: 16px;
+}
+
 .tabela-container td {
-    padding: 10px;
+    padding: 6px;
     text-align: center;
+    border: 1px solid #d856b1;
+}
+
+.tabela-container tbody tr:nth-child(even) {
+    background-color: #eeeeee;
+}
+
+.tabela-container tbody tr:nth-child(odd) {
+    background-color: white;
 }
 
 .barra-pesquisa {
     display: flex;
-    justify-content: center;
-    margin: 20px;
+    justify-content: flex-end;
+    margin: 13px 18px;
 }
 
 .barra-pesquisa input {
-    padding: 10px;
-    border: 1px solid #d856b1;
-    border-radius: 8px;
+    width: 160px;
+    padding: 2px;
+    border: 2px solid #d856b1;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.filtros-categoria {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 20px 20px;
+    flex-wrap: wrap;
 }
 
+.filtros-categoria button {
+    padding: 8px 18px;
+    background-color: white;
+    color: #d856b1;
+    border: 1px solid #d856b1;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
 
+.filtros-categoria button:hover {
+    background-color: #fce4f3;
+}
+
+.filtros-categoria button.ativo {
+    background-color: #d856b1;
+    color: white;
+    border-color: #d856b1;
+}
 .titulo-materiais {
     color: #d856b1;
     text-align: center;
@@ -101,15 +149,31 @@
 
 .cadastro-form button:hover {
     background: #c4429e;
+
 }
+
 .botao-cadastro {
-    padding: 10px 15px;
-    background-color: #d856b1;
+    display: inline-block;
+    margin: 8px 6px;
+    padding: 6px 10px;
+    background-color: #e245ab;
     color: white;
+    text-decoration: none;
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.tabela-container button {
     cursor: pointer;
 }
+
+.tabela-container img {
+    width: 25px;
+    height: 25px;
+}
+
 @media (max-width: 768px) {
 
     .titulo-materiais {

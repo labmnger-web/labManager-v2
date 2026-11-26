@@ -229,7 +229,7 @@
                 const acoes = document.createElement('td');
 
                 const editar = document.createElement('a');
-                editar.href = `editarVidraria.html?id=${material.id}&categoria=${material.categoria}`;
+                editar.href = `editarMaterial.html?id=${material.id}&categoria=${material.categoria}`;
                 editar.className = 'btn-editar';
                 editar.innerHTML =
                     '<img src="../img/editar.png" alt="Editar">';

@@ -12,16 +12,17 @@
 
 <body>
 
-    <header class="header-content">
-        <div class="header-logo">
-            <a href="../html/index.html">
-                <img src="../img/logo.png" alt="Logo">
-            </a>
-            <div class="usuario-logado">
-                <span id="nome-usuario">Nome do usuário</span>
+        <header class="header-content">
+            <div class="header-logo">
+                <a href="../html/index.html">
+                    <img src="../img/logo.png" alt="Logo">
+                </a>
+
+                <a href="../html/perfil.html" class="usuario-logado">
+                    <span id="nome-usuario">Nome do usuário</span>
+                </a>
             </div>
-        </div>
-    </header>
+        </header>
 
     <div class="page-content">
 
@@ -41,7 +42,8 @@
         <div class="area-cards">
             <main class="main-content">
                 <h1 class="titulo-agendamentos">Agendamento do laboratório de química - IFRS </h1>
-                <form class="area-agendamentos" action="/agendamento" method="POST">
+                <form  id="form-agendamento" class="area-agendamentos" action="/agendamento" method="POST">
+                    
 
                     <label for="data">Data:</label>
                     <input type="date" id="data" name="data" required>

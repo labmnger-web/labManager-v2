@@ -30,6 +30,34 @@ table {
      padding: 9px;
     border: 2px solid #d856b1;
 }
+.filtros-historico {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 20px 20px;
+    flex-wrap: wrap;
+}
+
+.filtros-historico button {
+    padding: 8px 18px;
+    background-color: white;
+    color: #d856b1;
+    border: 1px solid #d856b1;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.filtros-historico button:hover {
+    background-color: #fce4f3;
+}
+
+.filtros-historico button.ativo {
+    background-color: #d856b1;
+    color: white;
+    border-color: #d856b1;
+}
 th {
     padding: 10px 10px;
     color: #f4f0f2;
