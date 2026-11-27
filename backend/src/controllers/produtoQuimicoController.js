@@ -1,4 +1,5 @@
 const prisma = require('../lib/prisma');
+const registrarHistorico = require('../utils/registrarHistorico');
 module.exports = {
   async getAllChemicals(req, res) {
     try {
@@ -71,7 +72,7 @@ module.exports = {
         data: {
           nome: nome.trim().toLowerCase(),
           descricao: descricao?.trim().toLowerCase() || null,
-          unidade_medida: parseFloat(unidade_medida),
+          unidade_medida: unidade_medida.trim().toLowerCase(), 
           local_armazenamento: local_armazenamento.trim().toLowerCase(),
           quantidade: parseInt(quantidade),
           quantidade_minima: parseInt(quantidade_minima)
@@ -82,7 +83,7 @@ module.exports = {
         acao: 'CRIOU',
         categoria: 'REAGENTE',
         item_nome: newChemical.nome,
-        id_usuario: req.userId
+        id_usuario: parseInt(req.userId.id)
       });
 
       return res.status(201).json({
@@ -118,7 +119,7 @@ module.exports = {
         acao: 'DELETOU',
         categoria: 'REAGENTE',
         item_nome: chemical.nome,
-        id_usuario: req.userId
+        id_usuario: req.userId.id
       });
 
       res.status(200).json(produto_quimico);
@@ -153,7 +154,7 @@ module.exports = {
         acao: 'EDITOU',
         categoria: 'REAGENTE',
         item_nome: ChemicalUpdate.nome,
-        id_usuario: req.userId
+        id_usuario: req.userId.id
       });
 
       res.status(200).json(ChemicalUpdate);

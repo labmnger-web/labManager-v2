@@ -6,7 +6,7 @@ const express = require('express');
 const app = express();
 
 app.use(cors({
-    origin: 'http://127.0.0.1:5501'
+    origin: 'http://127.0.0.1:5500'
 }));
 
 app.use(express.json());
@@ -33,7 +33,7 @@ app.use('/agendamento', agendamentoRoutes);
 
 const PORT = process.env.PORT || 5000;
 
-const server = app.listen(PORT, '0.0.0.0', () => {
+const server = app.listen(PORT, () => {
     console.log('Servidor rodando na porta 5000');
 });
 

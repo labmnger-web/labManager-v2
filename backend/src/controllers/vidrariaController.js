@@ -1,4 +1,5 @@
 const prisma = require('../lib/prisma');
+const registrarHistorico = require('../utils/registrarHistorico');
 module.exports = {
   async getAllGlassware(req, res) {
     try {
@@ -83,7 +84,7 @@ module.exports = {
         acao: 'CRIOU',
         categoria: 'VIDRARIA',
         item_nome: newGlassware.nome,
-        id_usuario: req.userId
+        id_usuario: req.userId.id
       });
 
       return res.status(201).json({
@@ -119,7 +120,7 @@ module.exports = {
         acao: 'DELETOU',
         categoria: 'VIDRARIA',
         item_nome: glassware.nome,
-        id_usuario: req.userId
+        id_usuario: req.userId.id
       });
 
       res.status(200).json(vidraria);
@@ -158,7 +159,7 @@ module.exports = {
         acao: 'EDITOU',
         categoria: 'VIDRARIA',
         item_nome: GlasswareUpdate.nome,
-        id_usuario: req.userId
+        id_usuario: req.userId.id
       });
 
       res.status(200).json(GlasswareUpdate);

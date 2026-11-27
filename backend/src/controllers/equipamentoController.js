@@ -1,4 +1,5 @@
 const prisma = require('../lib/prisma');
+const registrarHistorico = require('../utils/registrarHistorico');
 
 module.exports = {
   async getAllEquipments(req, res) {
@@ -80,7 +81,7 @@ module.exports = {
         acao: 'CRIOU',
         categoria: 'EQUIPAMENTO',
         item_nome: newEquipment.nome,
-        id_usuario: req.userId
+        id_usuario: req.userId.id
       });
 
 
@@ -117,7 +118,7 @@ module.exports = {
         acao: 'DELETOU',
         categoria: 'EQUIPAMENTO',
         item_nome: equipment.nome,
-        id_usuario: req.userId
+        id_usuario: req.userId.id
       });
 
       res.status(200).json(equipamento);
@@ -149,7 +150,7 @@ module.exports = {
         acao: 'EDITOU',
         categoria: 'EQUIPAMENTO',
         item_nome: equipmentUpdate.nome,
-        id_usuario: req.userId
+        id_usuario: req.userId.id
       });
 
       res.status(200).json(equipmentUpdate);

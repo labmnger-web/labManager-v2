@@ -1,5 +1,4 @@
 const prisma = require('../lib/prisma');
-
 const registrarHistorico = require('../utils/registrarHistorico');
 
 module.exports = {
@@ -85,8 +84,8 @@ module.exports = {
         acao: 'CRIOU',
         categoria: 'ACESSORIO',
         item_nome: newAccessory.nome,
-        detalhes: `Quantidade inicial: ${novoItem.quantidade ?? '-'}`,
-        id_usuario: req.userId
+        descricao: descricao.trim().toLowerCase(),
+        id_usuario: req.userId.id
       });
 
       return res.status(201).json({
@@ -110,26 +109,29 @@ module.exports = {
         return res.status(400).json({ error: 'ID do acessório é obrigatório' });
       }
 
-      const accessory = await prisma.acessorio.findUnique({
-            where: { id: Number(id) }
-        });
+      const acessorio = await prisma.acessorio.findUnique({
+        where: { id: parseInt(id) }
+      });
 
-      const acessorio = await prisma.acessorio.delete({
+      if (!acessorio) {
+        return res.status(404).json({ error: 'Acessório não encontrado' });
+      }
+
+      const acessorioDeletado = await prisma.acessorio.delete({
         where: { id: parseInt(id) }
       });
 
       await registrarHistorico({
         acao: 'DELETOU',
-        categoria: 'ACESSORIO', 
-        item_nome: accessory.nome,
-        detalhes: `Quantidade inicial: ${novoItem.quantidade ?? '-'}`,
+        categoria: 'ACESSORIO',
+        item_nome: acessorio.nome, // <-- Corrigido (estava novoItem.nome)
         id_usuario: req.userId
       });
 
-      res.status(200).json(acessorio);
+      return res.status(200).json(acessorioDeletado);
     } catch (error) {
       console.error('Erro ao deletar acessório:', error);
-      res.status(500).json({ error: 'Erro ao deletar acessório' });
+      return res.status(500).json({ error: 'Erro ao deletar acessório' });
     }
   },
 
@@ -158,7 +160,7 @@ module.exports = {
         acao: 'EDITOU',
         categoria: 'ACESSORIO',
         item_nome: accessoryUpdate.nome,
-        id_usuario: req.userId
+        id_usuario: req.userId.id
       });
 
       res.status(200).json(accessoryUpdate);

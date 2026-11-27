@@ -52,42 +52,49 @@ module.exports = {
 
     async searchSchedules(req, res) {
         try {
-            const pesquisa = (req.query.pesquisa || '').trim();
-            const where = {};
+            const { q } = req.query;
 
-            if (pesquisa) {
-
-                const dataBR = termo.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
-
-                if (dataBR) {
-                    const [, dia, mes, ano] = dataBR;
-                    where.data = new Date(`${ano}-${mes}-${dia}`);
-                } else {
-                    where.usuario = {
-                        nome: {
-                            contains: pesquisa,
-                            mode: 'insensitive'
-                        }
-                    };
-                }
-            }
-
-            const agendamentos = await prisma.agendamento.findMany({
-                where,
+            // Busca todos os agendamentos trazendo o nome do usuário
+            const todosAgendamentos = await prisma.agendamento.findMany({
                 include: {
                     usuario: {
-                        select: { id: true, nome: true }
+                        select: {
+                            id: true,
+                            nome: true
+                        }
                     }
                 },
-                orderBy: { data: 'asc' }
+                orderBy: {
+                    data: 'desc'
+                }
             });
-            return res.status(200).json(agendamentos);
-        } catch (error) {
-            console.error('Erro ao procurar agendamento:', error);
 
-            return res.status(500).json({
-                error: 'Erro ao procurar agendamento'
+            // Se não houver termo de pesquisa, retorna todos
+            if (!q || !q.trim()) {
+                return res.json(todosAgendamentos);
+            }
+
+            const termo = q.trim().toLowerCase();
+
+            const filtrados = todosAgendamentos.filter((ag) => {
+                // Formata a data para DD/MM/AAAA (ajuste timeZone: 'UTC' para não voltar 1 dia)
+                const dataFormatada = new Date(ag.data).toLocaleDateString('pt-BR', {
+                    timeZone: 'UTC'
+                });
+
+                return (
+                    String(ag.id).includes(termo) ||
+                    dataFormatada.includes(termo) ||
+                    (ag.descricao && ag.descricao.toLowerCase().includes(termo)) ||
+                    (ag.turno && ag.turno.toLowerCase().includes(termo)) ||
+                    (ag.usuario?.nome && ag.usuario.nome.toLowerCase().includes(termo))
+                );
             });
+
+            return res.json(filtrados);
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ error: 'Erro ao buscar agendamentos.' });
         }
     },
 
@@ -95,7 +102,7 @@ module.exports = {
         try {
 
             const { data, turno, descricao } = req.body;
-            const id_usuario = req.userId;
+            const id_usuario = req.userId.id;
 
             if (!data || !turno) {
                 return res.status(400).json({ error: 'Preencha os campos obrigatórios' });
@@ -106,7 +113,7 @@ module.exports = {
                     data: new Date(data),
                     descricao: descricao?.trim().toLowerCase() || null,
                     turno,
-                    id_usuario: id_usuario
+                    id_usuario: parseInt(id_usuario)
                 },
                 include: {
                     usuario: {

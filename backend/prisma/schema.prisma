@@ -48,7 +48,6 @@ model agendamento {
   id         Int     @id @default(autoincrement())
   data       DateTime   @db.Date
   turno      Turno
-  nome       String
   descricao  String?
   id_usuario Int
   usuario    usuario   @relation(fields: [id_usuario], references: [id], onDelete: Cascade)
