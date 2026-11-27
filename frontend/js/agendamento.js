@@ -59,35 +59,28 @@
     }
 
     // Busca agendamentos (todos ou filtrados por nome/data)
-    async function buscarAgendamentos(termo = '') {
-        let url = API;
+   async function buscarAgendamentos(termo = '') {
+    let url = API;
+    const termoLimpo = termo.trim();
 
-        if (termo) {
-            
-            const dataBR = termo.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
-
-            if (dataBR) {
-                const [, dia, mes, ano] = dataBR;
-                url = `${API}/search?data=${encodeURIComponent(`${ano}-${mes}-${dia}`)}`;
-            } else {
-                url = `${API}/search?nome=${encodeURIComponent(termo)}`;
-            }
-        }
-
-        const resposta = await fetch(url, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-
-        const dados = await resposta.json();
-
-        if (!resposta.ok) {
-            throw new Error(dados.error || 'Erro ao buscar agendamentos.');
-        }
-
-        return dados;
+    if (termoLimpo) {
+        url = `${API}/search?q=${encodeURIComponent(termoLimpo)}`;
     }
+
+    const resposta = await fetch(url, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+
+    const dados = await resposta.json();
+
+    if (!resposta.ok) {
+        throw new Error(dados.error || 'Erro ao buscar agendamentos.');
+    }
+
+    return dados;
+}   
 
     // Carrega e renderiza os agendamentos na tabela
     async function carregarAgendamentos() {

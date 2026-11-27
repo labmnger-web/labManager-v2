@@ -1,4 +1,3 @@
-
 (() => {
     const formulario = document.querySelector('.cadastro-form');
     const categoria = document.getElementById('categoria');
@@ -13,13 +12,15 @@
 
     const campoMaterial = document.getElementById('campo-material');
     const campoCapacidade = document.getElementById('campo-capacidade');
+    const campoUnidade = document.getElementById('campo-unidade');
+    const campoEstoque = document.getElementById('campo-estoque');
 
     const inputMaterial = document.getElementById('material');
     const inputCapacidade = document.getElementById('capacidade');
     const inputUnidade = document.getElementById('unidade_medida');
-
-
-    
+    const inputLocal = document.getElementById('local_armazenamento');
+    const inputQuantidade = document.getElementById('quantidade');
+    const inputQtdMinima = document.getElementById('quantidade_minima');
 
     if (!token) {
         window.location.href = 'login.html';
@@ -64,19 +65,49 @@
         }
     }
 
-    // Mostra os campos de acordo com a categoria
+    // Mostra, exige e habilita apenas os campos da categoria selecionada
+    // Mostra, exige e habilita apenas os campos da categoria selecionada
     function atualizarCampos() {
         const tipo = categoria.value;
 
-        const usaMaterial = ['vidraria', 'acessorio'].includes(tipo);
+        const usaMaterial = ['vidraria', 'acessorio', 'equipamento'].includes(tipo);
         const usaCapacidade = tipo === 'vidraria';
+        const usaUnidade = ['vidraria', 'reagente'].includes(tipo);
+        const usaEstoque = tipo !== 'equipamento' && tipo !== '';
 
         campoMaterial.hidden = !usaMaterial;
-        campoCapacidade.hidden = !usaCapacidade;
+        campoMaterial.style.display = usaMaterial ? '' : 'none';
 
+        campoCapacidade.hidden = !usaCapacidade;
+        campoCapacidade.style.display = usaCapacidade ? '' : 'none';
+
+        campoUnidade.hidden = !usaUnidade;
+        campoUnidade.style.display = usaUnidade ? '' : 'none';
+
+        campoEstoque.hidden = !usaEstoque;
+        campoEstoque.style.display = usaEstoque ? '' : 'none';
+
+        // Material
         inputMaterial.required = usaMaterial;
+        inputMaterial.disabled = !usaMaterial;
+        if (!usaMaterial) inputMaterial.value = '';
+
+        // Capacidade
         inputCapacidade.required = usaCapacidade;
-        inputUnidade.required = usaCapacidade;
+        inputCapacidade.disabled = !usaCapacidade;
+        if (!usaCapacidade) inputCapacidade.value = '';
+
+        // Unidade de medida
+        inputUnidade.required = usaUnidade;
+        inputUnidade.disabled = !usaUnidade;
+        if (!usaUnidade) inputUnidade.value = '';
+
+        // Estoque (Local, Quantidade e Quantidade Mínima)
+        [inputLocal, inputQuantidade, inputQtdMinima].forEach((input) => {
+            input.required = usaEstoque;
+            input.disabled = !usaEstoque;
+            if (!usaEstoque) input.value = '';
+        });
     }
 
     categoria.addEventListener('change', atualizarCampos);
@@ -94,18 +125,24 @@
 
         const dados = {
             nome: document.getElementById('nome').value.trim(),
-            descricao: document.getElementById('descricao').value.trim() || null,
-            local_armazenamento: document.getElementById('local_armazenamento').value.trim(),
-            quantidade: parseFloat(document.getElementById('quantidade').value),
-            quantidade_minima: parseFloat(document.getElementById('quantidade_minima').value)
+            descricao: document.getElementById('descricao').value.trim() || null
         };
 
-        if (tipo === 'vidraria' || tipo === 'acessorio') {
+        if (tipo !== 'equipamento') {
+            dados.local_armazenamento = inputLocal.value.trim();
+            dados.quantidade = parseFloat(inputQuantidade.value);
+            dados.quantidade_minima = parseFloat(inputQtdMinima.value);
+        }
+
+        if (['vidraria', 'acessorio', 'equipamento'].includes(tipo)) {
             dados.material = inputMaterial.value.trim();
         }
 
         if (tipo === 'vidraria') {
             dados.capacidade = parseFloat(inputCapacidade.value);
+        }
+
+        if (['vidraria', 'reagente'].includes(tipo)) {
             dados.unidade_medida = inputUnidade.value.trim();
         }
 
@@ -126,7 +163,6 @@
             }
 
             alert('Material cadastrado com sucesso!');
-
             window.location.href = 'material.html';
 
         } catch (error) {
@@ -135,6 +171,6 @@
         }
     });
 
+    atualizarCampos();
     carregarNomeUsuario();
-
 })();

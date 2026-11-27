@@ -1,4 +1,3 @@
-
 (() => {
     const APIS = {
         vidraria: 'http://localhost:5000/vidraria',
@@ -65,6 +64,10 @@
     async function buscarMateriais(categoria, nome = '') {
         const API = APIS[categoria];
 
+        if (!API) {
+            throw new Error(`Categoria inválida: ${categoria}`);
+        }
+
         const url = nome
             ? `${API}/search?nome=${encodeURIComponent(nome)}`
             : API;
@@ -123,10 +126,19 @@
                 'Quantidade mínima',
                 'Ações'
             ];
-        } else {
+        } else if (categoriaAtual === 'equipamento') {
             colunas = [
                 'Nome',
                 'Descrição',
+                'Material',
+                'Ações'
+            ];
+        } else {
+            // reagente
+            colunas = [
+                'Nome',
+                'Descrição',
+                'Unidade de medida',
                 'Local de armazenamento',
                 'Quantidade',
                 'Quantidade mínima',
@@ -144,7 +156,8 @@
     // Carrega os materiais
     async function carregarMateriais() {
         try {
-            const nome = campoPesquisa.value.trim();
+            // Evita erro caso a barra de pesquisa tenha sido removida do HTML
+            const nome = campoPesquisa ? campoPesquisa.value.trim() : '';
 
             const categorias = categoriaAtual === 'todos'
                 ? Object.keys(APIS)
@@ -209,10 +222,18 @@
                         material.quantidade ?? '-',
                         material.quantidade_minima ?? '-'
                     ];
-                } else {
+                } else if (material.categoria === 'equipamento') {
                     valores = [
                         material.nome.toUpperCase(),
                         material.descricao ?? '-',
+                        material.material ?? '-'
+                    ];
+                } else {
+                    // reagente
+                    valores = [
+                        material.nome.toUpperCase(),
+                        material.descricao ?? '-',
+                        material.unidade_medida ?? '-',
                         material.local_armazenamento ?? '-',
                         material.quantidade ?? '-',
                         material.quantidade_minima ?? '-'
@@ -291,14 +312,18 @@
             filtros.forEach(botao => botao.classList.remove('ativo'));
 
             filtro.classList.add('ativo');
-            categoriaAtual = filtro.dataset.categoria;
+            // Normaliza 'acessorios' para 'acessorio' caso o HTML esteja no plural
+            const cat = filtro.dataset.categoria;
+            categoriaAtual = cat === 'acessorios' ? 'acessorio' : cat;
 
             carregarMateriais();
         });
     });
 
-    // Pesquisa
-    campoPesquisa.addEventListener('input', carregarMateriais);
+    // Pesquisa (só ativa se o input existir no HTML)
+    if (campoPesquisa) {
+        campoPesquisa.addEventListener('input', carregarMateriais);
+    }
 
     carregarNomeUsuario();
     carregarMateriais();

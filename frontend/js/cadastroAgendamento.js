@@ -72,7 +72,6 @@
             try {
                 const data = campoData.value;
                 const turno = campoTurno.value;
-                const nome = campoNome.value;
                 const descricao = campoDescricao ? campoDescricao.value.trim() : '';
 
                 if (!data || !turno) {
@@ -83,10 +82,9 @@
                 const dadosAgendamento = {
                     data,
                     turno,
-                    nome,
                     descricao
                 };
-
+                console.log(dadosAgendamento);
                 const response = await fetch('http://localhost:5000/agendamento', {
                     method: 'POST',
                     headers: {

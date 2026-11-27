@@ -16,6 +16,45 @@
 
     const formPerfil = document.getElementById('form-perfil');
     const mensagem = document.getElementById('mensagem');
+    const nomeUsuario = document.getElementById('nome-usuario');
+
+    async function carregarNomeUsuario() {
+        try {
+            const payloadBase64 = token.split('.')[1]
+                .replace(/-/g, '+')
+                .replace(/_/g, '/');
+
+            const payload = JSON.parse(
+                atob(payloadBase64.padEnd(
+                    payloadBase64.length +
+                    (4 - payloadBase64.length % 4) % 4,
+                    '='
+                ))
+            );
+
+            const resposta = await fetch(
+                `http://localhost:5000/usuario/${payload.id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
+            const usuario = await resposta.json();
+
+            if (!resposta.ok) {
+                throw new Error(usuario.error || 'Erro ao buscar usuário.');
+            }
+
+            if (nomeUsuario) {
+                nomeUsuario.textContent = usuario.nome.toUpperCase();
+            }
+
+        } catch (error) {
+            console.error('Erro ao carregar usuário:', error);
+        }
+    }
 
     async function carregarPerfil() {
         try {
@@ -127,5 +166,6 @@
         }
     });
 
+    carregarNomeUsuario();
     carregarPerfil();
 })();

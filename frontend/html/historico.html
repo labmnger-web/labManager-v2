@@ -50,20 +50,18 @@
 
             <div class="filtros-historico">
                 <button type="button" class="filtro ativo" data-acao="todos">Todos</button>
-                <button type="button" class="filtro" data-acao="CREATE">Cadastros</button>
-                <button type="button" class="filtro" data-acao="UPDATE">Edições</button>
-                <button type="button" class="filtro" data-acao="DELETE">Exclusões</button>
+                <button type="button" class="filtro" data-acao="CRIOU">Cadastros</button>
+                <button type="button" class="filtro" data-acao="EDITOU">Edições</button>
+                <button type="button" class="filtro" data-acao="DELETOU">Exclusões</button>
             </div>
 
             <div class="tabela-container">
                 <table>
                     <thead>
                         <tr>
-                            <th>Data / Hora</th>
                             <th>Ação</th>
                             <th>Categoria</th>
                             <th>Item</th>
-                            <th>Detalhes</th>
                             <th>Usuário</th>
                         </tr>
                     </thead>
@@ -82,7 +80,6 @@
 
     <script src="../script.js"></script>
     <script src="../js/proteger.js"></script>
-    <script src="../js/perfil.js"></script>
     <script src="../js/historico.js"></script>
 
 </body>

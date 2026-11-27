@@ -49,7 +49,7 @@
 
     if (!id || !API[categoria]) {
         alert('Material ou categoria inválida.');
-        window.location.href = 'vidraria.html';
+        window.location.href = 'material.html';
         return;
     }
 
@@ -240,7 +240,7 @@
             });
 
             alert('Material atualizado com sucesso!');
-            window.location.href = 'vidraria.html';
+            window.location.href = 'material.html';
 
         } catch (error) {
             console.error('Erro ao atualizar material:', error);

@@ -10,11 +10,15 @@
     const listaHistorico = document.getElementById('lista-historico');
     const campoPesquisa = document.getElementById('pesquisa');
     const botoesFiltro = document.querySelectorAll('.filtro');
+    const nomeUsuario = document.getElementById('nome-usuario');
 
     let registrosHistorico = [];
     let acaoAtual = 'todos';
 
     const labelsAcao = {
+        CRIOU: 'Cadastro',
+        EDITOU: 'Edição',
+        DELETOU: 'Exclusão',
         CREATE: 'Cadastro',
         UPDATE: 'Edição',
         DELETE: 'Exclusão'
@@ -22,22 +26,49 @@
 
     const labelsCategoria = {
         VIDRARIA: 'Vidraria',
-        PRODUTO_QUIMICO: 'Produto Químico',
+        PRODUTO_QUIMICO: 'Reagente',
+        REAGENTE: 'Reagente',
         ACESSORIO: 'Acessório',
         EQUIPAMENTO: 'Equipamento'
     };
 
-    // Formata timestamp ISO para "24/11/2026 22:08"
-    const formatarDataHora = (dataISO) => {
-        if (!dataISO) return '-';
-        const data = new Date(dataISO);
-        const dia = String(data.getDate()).padStart(2, '0');
-        const mes = String(data.getMonth() + 1).padStart(2, '0');
-        const ano = data.getFullYear();
-        const hora = String(data.getHours()).padStart(2, '0');
-        const min = String(data.getMinutes()).padStart(2, '0');
-        return `${dia}/${mes}/${ano} ${hora}:${min}`;
-    };
+    const carregarNomeUsuario = async () => {
+        try {
+            const payloadBase64 = token.split('.')[1]
+                .replace(/-/g, '+')
+                .replace(/_/g, '/');
+
+            const payload = JSON.parse(
+                atob(payloadBase64.padEnd(
+                    payloadBase64.length +
+                    (4 - payloadBase64.length % 4) % 4,
+                    '='
+                ))
+            );
+
+            const resposta = await fetch(
+                `http://localhost:5000/usuario/${payload.id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                }
+            );
+
+            const usuario = await resposta.json();
+
+            if (!resposta.ok) {
+                throw new Error(usuario.error || 'Erro ao buscar usuário.');
+            }
+
+            if (nomeUsuario) {
+                nomeUsuario.textContent = usuario.nome.toUpperCase();
+            }
+
+        } catch (error) {
+            console.error('Erro ao carregar usuário:', error);
+        }
+    }
 
     // Busca todos os logs no back-end
     const carregarHistorico = async () => {
@@ -71,26 +102,36 @@
     };
 
     // Filtra e renderiza as linhas na tabela
+    // Filtra e renderiza as linhas na tabela
     const renderizarTabela = () => {
-        const termo = campoPesquisa.value.trim().toLowerCase();
+        const termo = campoPesquisa ? campoPesquisa.value.trim().toLowerCase() : '';
+
+        const mapaAcoes = {
+            CRIOU: ['CRIOU', 'CREATE'],
+            EDITOU: ['EDITOU', 'UPDATE'],
+            DELETOU: ['DELETOU', 'DELETE']
+        };
 
         const filtrados = registrosHistorico.filter((item) => {
-            if (acaoAtual !== 'todos' && item.acao !== acaoAtual) {
-                return false;
+            if (acaoAtual !== 'todos') {
+                const acoesPermitidas = mapaAcoes[acaoAtual] || [acaoAtual];
+                if (!acoesPermitidas.includes(item.acao)) {
+                    return false;
+                }
             }
 
             if (!termo) return true;
 
+            const acao = (labelsAcao[item.acao] || item.acao || '').toLowerCase();
             const nomeItem = item.item_nome?.toLowerCase() || '';
             const categoria = (labelsCategoria[item.categoria] || item.categoria || '').toLowerCase();
             const usuario = item.usuario?.nome?.toLowerCase() || '';
-            const detalhes = item.detalhes?.toLowerCase() || '';
 
             return (
+                acao.includes(termo) ||
                 nomeItem.includes(termo) ||
                 categoria.includes(termo) ||
-                usuario.includes(termo) ||
-                detalhes.includes(termo)
+                usuario.includes(termo)
             );
         });
 
@@ -98,8 +139,8 @@
 
         if (filtrados.length === 0) {
             listaHistorico.innerHTML = `
-                <tr>
-                    <td colspan="6">Nenhum registro encontrado no histórico.</td>
+                <tr class="linha-historico">
+                    <td colspan="4">Nenhum registro encontrado no histórico.</td>
                 </tr>
             `;
             return;
@@ -107,13 +148,12 @@
 
         filtrados.forEach((item) => {
             const linha = document.createElement('tr');
+            linha.classList.add('linha-historico');
 
             const valores = [
-                formatarDataHora(item.data_hora),
                 labelsAcao[item.acao] || item.acao,
                 labelsCategoria[item.categoria] || item.categoria,
-                item.item_nome.toUpperCase(),
-                item.detalhes || '-',
+                item.item_nome ? item.item_nome.toUpperCase() : '-',
                 item.usuario?.nome ? item.usuario.nome.toUpperCase() : '-'
             ];
 
@@ -127,7 +167,7 @@
         });
     };
 
-    // Filtros por tipo de ação (Todos / Cadastros / Edições / Exclusões)
+    // Filtros por tipo de ação
     botoesFiltro.forEach((botao) => {
         botao.addEventListener('click', () => {
             botoesFiltro.forEach((b) => b.classList.remove('ativo'));
@@ -137,8 +177,11 @@
         });
     });
 
-    // Busca em tempo real
-    campoPesquisa.addEventListener('input', renderizarTabela);
+    // Busca em tempo real (se o input existir)
+    if (campoPesquisa) {
+        campoPesquisa.addEventListener('input', renderizarTabela);
+    }
 
+    carregarNomeUsuario();
     carregarHistorico();
 })();

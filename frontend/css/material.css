@@ -102,6 +102,33 @@
     box-sizing: border-box;
 }
 
+.cadastro-form input,
+.cadastro-form textarea,
+.cadastro-form select {
+    padding: 8px;
+    border: 1px solid #cbd8e6;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.cadastro-form input:focus,
+.cadastro-form textarea:focus,
+.cadastro-form select:focus {
+    border-color: #d856b1;
+    outline: none;
+}
+
+#campo-material:not([hidden]),
+#campo-unidade:not([hidden]),
+#campo-estoque:not([hidden]),
+#campo-capacidade:not([hidden]) {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
 .cadastro-form h2 {
     text-align: center;
     color: #d856b1;
